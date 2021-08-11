@@ -11,8 +11,21 @@ public class PrefabLoader : MonoBehaviour
 {
     public string assetBundlePath;
     public string prefabToLoad;
+    
+    //[HideInInspector]
+    public bool loaded;
+    
+    //[HideInInspector]
+    public string[] assetNames;
+    
+    //[HideInInspector]
+    public int assetIndex;
 
-    private AssetBundle _bundle;
+    //[HideInInspector] 
+    public bool bundleLoaded;
+
+    //[HideInInspector]
+    public AssetBundle bundle;
 
     private void Awake()
     {
@@ -27,9 +40,9 @@ public class PrefabLoader : MonoBehaviour
             return;
         }
         
-        _bundle = AssetBundle.LoadFromFile(assetBundlePath);
-        Object obj = _bundle.LoadAsset(prefabToLoad);
+        AssetBundle bundle = AssetBundle.LoadFromFile(assetBundlePath);
+        Object obj = bundle.LoadAsset(prefabToLoad);
         Instantiate(obj, this.transform.position, this.transform.rotation);
-        _bundle.Unload(false);
+        bundle.Unload(false);
     }
 }
