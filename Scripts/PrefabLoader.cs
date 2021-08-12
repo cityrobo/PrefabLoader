@@ -1,4 +1,5 @@
-﻿using System;
+#if UNITY_EDITOR
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -43,6 +44,7 @@ public class PrefabLoader : MonoBehaviour
         AssetBundle bundle = AssetBundle.LoadFromFile(assetBundlePath);
         Object obj = bundle.LoadAsset(prefabToLoad);
         Instantiate(obj, this.transform.position, this.transform.rotation);
-        bundle.Unload(false);
+        //bundle.Unload(false);
     }
 }
+#endif
